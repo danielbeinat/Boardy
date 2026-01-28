@@ -6,13 +6,9 @@ import {
   Menu,
   Search,
   Plus,
-  Bell,
-  HelpCircle,
   MoreHorizontal,
   Star,
   Users,
-  Zap,
-  Filter,
   X,
 } from "lucide-react";
 import { Board } from "./components/board";
@@ -633,15 +629,12 @@ export const BoardyApp: React.FC = () => {
           <main className="flex-1 overflow-x-auto overflow-y-hidden">
             <Board
               board={filteredBoard}
-              onUpdate={() => {}}
               onListAdd={handleAddList}
               onListUpdate={updateList}
               onListDelete={deleteList}
               onListCopy={() => {}}
               onCardAdd={handleAddCard}
               onCardClick={handleCardClick}
-              onCardDelete={deleteCard}
-              onCardMove={moveCard}
             />
           </main>
         </div>

@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, Clock, AlertCircle, X } from 'lucide-react';
-import { Button, Input, Modal } from '../ui';
-import { format, addDays, isAfter, isBefore, startOfDay } from 'date-fns';
-import { es } from 'date-fns/locale';
+import React, { useState } from "react";
+import { Calendar, Clock, AlertCircle, X } from "lucide-react";
+import { Button, Modal } from "../ui";
+import { format, addDays, isAfter, isBefore, startOfDay } from "date-fns";
+import { es } from "date-fns/locale";
 
 interface DatePickerProps {
   value?: string;
@@ -19,10 +18,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   onClose,
 }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(
-    value ? new Date(value) : null
+    value ? new Date(value) : null,
   );
   const [currentMonth, setCurrentMonth] = useState<Date>(
-    selectedDate || new Date()
+    selectedDate || new Date(),
   );
 
   const handleDateSelect = (date: Date) => {
@@ -33,14 +32,13 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
   const handleClear = () => {
     setSelectedDate(null);
-    onChange('');
+    onChange("");
     onClose();
   };
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
     const month = date.getMonth();
-    const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     return lastDay.getDate();
   };
@@ -63,7 +61,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
     // Days of the month
     for (let i = 1; i <= daysInMonth; i++) {
-      days.push(new Date(currentMonth.getFullYear(), currentMonth.getMonth(), i));
+      days.push(
+        new Date(currentMonth.getFullYear(), currentMonth.getMonth(), i),
+      );
     }
 
     return days;
@@ -91,10 +91,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     return isBefore(startOfDay(date), startOfDay(new Date()));
   };
 
-  const navigateMonth = (direction: 'prev' | 'next') => {
-    setCurrentMonth(prev => {
+  const navigateMonth = (direction: "prev" | "next") => {
+    setCurrentMonth((prev) => {
       const newMonth = new Date(prev);
-      if (direction === 'prev') {
+      if (direction === "prev") {
         newMonth.setMonth(newMonth.getMonth() - 1);
       } else {
         newMonth.setMonth(newMonth.getMonth() + 1);
@@ -104,24 +104,29 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Seleccionar fecha" size="sm">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Seleccionar fecha"
+      size="sm"
+    >
       <div className="space-y-4">
         {/* Month Navigation */}
         <div className="flex items-center justify-between">
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigateMonth('prev')}
+            onClick={() => navigateMonth("prev")}
           >
             ←
           </Button>
           <h3 className="text-lg font-medium">
-            {format(currentMonth, 'MMMM yyyy', { locale: es })}
+            {format(currentMonth, "MMMM yyyy", { locale: es })}
           </h3>
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigateMonth('next')}
+            onClick={() => navigateMonth("next")}
           >
             →
           </Button>
@@ -130,7 +135,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         {/* Calendar Grid */}
         <div className="grid grid-cols-7 gap-1 text-center">
           {/* Weekday headers */}
-          {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map(day => (
+          {["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"].map((day) => (
             <div key={day} className="text-xs font-medium text-gray-500 py-2">
               {day}
             </div>
@@ -152,10 +157,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 onClick={() => handleDateSelect(date)}
                 className={`
                   p-2 rounded-lg text-sm transition-all
-                  ${today ? 'bg-blue-100 text-blue-700 font-bold' : ''}
-                  ${selected ? 'bg-blue-600 text-white' : ''}
-                  ${!today && !selected ? 'hover:bg-gray-100' : ''}
-                  ${past && !selected ? 'text-gray-400' : 'text-gray-700'}
+                  ${today ? "bg-blue-100 text-blue-700 font-bold" : ""}
+                  ${selected ? "bg-blue-600 text-white" : ""}
+                  ${!today && !selected ? "hover:bg-gray-100" : ""}
+                  ${past && !selected ? "text-gray-400" : "text-gray-700"}
                 `}
               >
                 {date.getDate()}
@@ -166,7 +171,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
         {/* Quick Select Buttons */}
         <div className="space-y-2">
-          <div className="text-sm font-medium text-gray-700">Seleccionar rápidamente:</div>
+          <div className="text-sm font-medium text-gray-700">
+            Seleccionar rápidamente:
+          </div>
           <div className="grid grid-cols-2 gap-2">
             <Button
               variant="secondary"
@@ -224,7 +231,6 @@ interface DueDateDisplayProps {
 
 export const DueDateDisplay: React.FC<DueDateDisplayProps> = ({
   dueDate,
-  onEdit,
   onRemove,
 }) => {
   if (!dueDate) return null;
@@ -241,15 +247,17 @@ export const DueDateDisplay: React.FC<DueDateDisplayProps> = ({
   };
 
   const getColor = () => {
-    if (isOverdue) return 'text-red-600 bg-red-50';
-    if (isToday) return 'text-yellow-600 bg-yellow-50';
-    return 'text-gray-600 bg-gray-50';
+    if (isOverdue) return "text-red-600 bg-red-50";
+    if (isToday) return "text-yellow-600 bg-yellow-50";
+    return "text-gray-600 bg-gray-50";
   };
 
   return (
-    <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs ${getColor()}`}>
+    <div
+      className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs ${getColor()}`}
+    >
       {getIcon()}
-      <span>{format(date, 'd MMM', { locale: es })}</span>
+      <span>{format(date, "d MMM", { locale: es })}</span>
       {onRemove && (
         <button
           onClick={onRemove}

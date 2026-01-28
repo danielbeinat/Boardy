@@ -14,11 +14,9 @@ import type {
   DragEndEvent,
 } from "@dnd-kit/core";
 import {
-  SortableContext,
   sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import type { Card, List } from "../types";
+import type { Card, List } from "../../types";
 
 interface DragAndDropProviderProps {
   children: React.ReactNode;
@@ -91,14 +89,12 @@ export const DragAndDropProvider: React.FC<DragAndDropProviderProps> = ({
     if (activeData.type === "card") {
       const activeCard = activeData.card as Card;
       let fromListId = "";
-      let fromIndex = -1;
 
       // Find where the card came from
       lists.forEach((list) => {
-        const index = list.cards.findIndex((c) => c.id === activeCard.id);
+        const index = list.cards.findIndex((c: Card) => c.id === activeCard.id);
         if (index !== -1) {
           fromListId = list.id;
-          fromIndex = index;
         }
       });
 
@@ -108,7 +104,7 @@ export const DragAndDropProvider: React.FC<DragAndDropProviderProps> = ({
         let toIndex = -1;
 
         lists.forEach((list) => {
-          const index = list.cards.findIndex((c) => c.id === overCard.id);
+          const index = list.cards.findIndex((c: Card) => c.id === overCard.id);
           if (index !== -1) {
             toListId = list.id;
             toIndex = index;

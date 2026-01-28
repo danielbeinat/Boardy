@@ -23,13 +23,11 @@ app.use(cors({
   optionsSuccessStatus: 204
 }));
 
-// Relax helmet for development
-/*
+// Security middleware
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
   crossOriginEmbedderPolicy: false
 }));
-*/
 
 // Only apply rate limiting in production or with higher limits
 const limiter = rateLimit({

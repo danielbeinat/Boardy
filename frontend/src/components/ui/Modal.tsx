@@ -67,23 +67,19 @@ export const Modal: React.FC<ModalProps> = ({
               )}
             >
               {/* Header */}
-              {(title || onClose) && (
-                <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-                  {title && (
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {title}
-                    </h3>
-                  )}
-                  {onClose && typeof onClose === "function" && (
-                    <button
-                      onClick={onClose}
-                      className="rounded-lg p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
-                    >
-                      <X className="h-5 w-5" />
-                    </button>
-                  )}
-                </div>
-              )}
+               <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
+                 {title ? (
+                   <h3 className="text-lg font-semibold text-gray-900">
+                     {title}
+                   </h3>
+                 ) : <div />}
+                 <button
+                   onClick={onClose}
+                   className="rounded-lg p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+                 >
+                   <X className="h-5 w-5" />
+                 </button>
+               </div>
 
               {/* Content */}
               <div className="px-6 py-4">{children}</div>

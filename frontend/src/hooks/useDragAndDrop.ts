@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import type { Card, List } from "../types";
+import type { List } from "../types";
 
 interface DragItem {
   id: string;

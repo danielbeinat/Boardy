@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { X, Plus } from "lucide-react";
 import { Button, Input, Modal } from "../ui";
 import type { Label } from "../../types";

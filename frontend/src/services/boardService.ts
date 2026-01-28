@@ -1,7 +1,8 @@
 import { authService } from "./authService";
-import type { Board, List, Card } from "../types";
+import type { Board, Card } from "../types";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 class BoardService {
   private getHeaders() {
@@ -43,29 +44,48 @@ class BoardService {
     return response.json();
   }
 
-  async addCard(boardId: string, listId: string, title: string, description?: string) {
-    const response = await fetch(`${API_BASE_URL}/board/${boardId}/lists/${listId}/cards`, {
-      method: "POST",
-      headers: this.getHeaders(),
-      body: JSON.stringify({ title, description }),
-    });
+  async addCard(
+    boardId: string,
+    listId: string,
+    title: string,
+    description?: string,
+  ) {
+    const response = await fetch(
+      `${API_BASE_URL}/board/${boardId}/lists/${listId}/cards`,
+      {
+        method: "POST",
+        headers: this.getHeaders(),
+        body: JSON.stringify({ title, description }),
+      },
+    );
     return response.json();
   }
 
-  async updateCard(boardId: string, listId: string, cardId: string, updates: Partial<Card>) {
-    const response = await fetch(`${API_BASE_URL}/board/${boardId}/lists/${listId}/cards/${cardId}`, {
-      method: "PUT",
-      headers: this.getHeaders(),
-      body: JSON.stringify(updates),
-    });
+  async updateCard(
+    boardId: string,
+    listId: string,
+    cardId: string,
+    updates: Partial<Card>,
+  ) {
+    const response = await fetch(
+      `${API_BASE_URL}/board/${boardId}/lists/${listId}/cards/${cardId}`,
+      {
+        method: "PUT",
+        headers: this.getHeaders(),
+        body: JSON.stringify(updates),
+      },
+    );
     return response.json();
   }
 
   async deleteCard(boardId: string, listId: string, cardId: string) {
-    const response = await fetch(`${API_BASE_URL}/board/${boardId}/lists/${listId}/cards/${cardId}`, {
-      method: "DELETE",
-      headers: this.getHeaders(),
-    });
+    const response = await fetch(
+      `${API_BASE_URL}/board/${boardId}/lists/${listId}/cards/${cardId}`,
+      {
+        method: "DELETE",
+        headers: this.getHeaders(),
+      },
+    );
     return response.json();
   }
 

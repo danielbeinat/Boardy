@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Filter, X, Check, Tag } from "lucide-react";
+import { Filter, X, Check } from "lucide-react";
 import { Button } from "../ui";
 import type { Label } from "../../types";
 

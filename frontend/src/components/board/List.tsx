@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, X, MoreHorizontal, Copy, Trash2, Edit2 } from "lucide-react";
+import { Plus, X, MoreHorizontal, Copy, Trash2 } from "lucide-react";
 import {
   SortableContext,
   verticalListSortingStrategy,
@@ -17,13 +17,6 @@ interface ListComponentProps {
   onCopy: (listId: string) => void;
   onCardAdd: (listId: string, title: string, description?: string) => void;
   onCardClick: (card: Card) => void;
-  onCardDelete: (listId: string, cardId: string) => void;
-  onCardMove: (
-    fromListId: string,
-    toListId: string,
-    cardId: string,
-    newIndex: number,
-  ) => void;
 }
 
 export const ListComponent: React.FC<ListComponentProps> = ({
@@ -33,8 +26,6 @@ export const ListComponent: React.FC<ListComponentProps> = ({
   onCopy,
   onCardAdd,
   onCardClick,
-  onCardDelete,
-  onCardMove,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(list.title);
@@ -149,14 +140,7 @@ export const ListComponent: React.FC<ListComponentProps> = ({
           >
             <AnimatePresence>
               {list.cards.map((card) => (
-                <SortableCard
-                  key={card.id}
-                  card={card}
-                  onEdit={onCardClick}
-                  onDelete={(cardId) => onCardDelete(list.id, cardId)}
-                  onLabelAdd={() => {}}
-                  onLabelRemove={() => {}}
-                />
+                <SortableCard key={card.id} card={card} onEdit={onCardClick} />
               ))}
             </AnimatePresence>
           </SortableContext>

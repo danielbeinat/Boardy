@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  MoreHorizontal,
-  Copy,
-  Trash2,
-  Edit2,
-  GripVertical,
-} from "lucide-react";
+import { Trash2, Edit2 } from "lucide-react";
 import type { Card } from "../../types";
 import { Button } from "../ui";
 import { cn } from "../../utils";
@@ -15,8 +9,6 @@ interface CardComponentProps {
   card: Card;
   onEdit: (card: Card) => void;
   onDelete: (cardId: string) => void;
-  onLabelAdd: (cardId: string, label: { color: string; text: string }) => void;
-  onLabelRemove: (cardId: string, labelId: string) => void;
   isDragging?: boolean;
 }
 
@@ -24,8 +16,6 @@ export const CardComponent: React.FC<CardComponentProps> = ({
   card,
   onEdit,
   onDelete,
-  onLabelAdd,
-  onLabelRemove,
   isDragging = false,
 }) => {
   const [showActions, setShowActions] = useState(false);

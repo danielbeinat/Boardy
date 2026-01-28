@@ -24,7 +24,7 @@ interface UIStore extends UIState {
 
 export const useUIStore = create<UIStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       theme: "system",
       sidebarOpen: true,
       searchOpen: false,

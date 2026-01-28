@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  X,
   AlignLeft,
   Tag,
   Calendar as CalendarIcon,
@@ -14,7 +13,6 @@ import { Button, Input, Modal, ConfirmModal } from "../ui";
 import { LabelManager } from "./LabelManager";
 import { DatePicker, DueDateDisplay } from "./DatePicker";
 import type { Card, Label } from "../../types";
-import { cn } from "../../utils";
 
 interface CardModalProps {
   isOpen: boolean;

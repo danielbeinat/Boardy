@@ -7,17 +7,11 @@ import { cn } from "../../utils";
 interface SortableCardProps {
   card: Card;
   onEdit: (card: Card) => void;
-  onDelete: (cardId: string) => void;
-  onLabelAdd: (cardId: string, label: { color: string; text: string }) => void;
-  onLabelRemove: (cardId: string, labelId: string) => void;
 }
 
 export const SortableCard: React.FC<SortableCardProps> = ({
   card,
   onEdit,
-  onDelete,
-  onLabelAdd,
-  onLabelRemove,
 }) => {
   const {
     attributes,

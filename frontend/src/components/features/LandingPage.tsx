@@ -9,7 +9,6 @@ import {
   Star,
   ArrowRight,
   Mail,
-  Lock,
   User,
 } from "lucide-react";
 import { Button } from "../ui";
@@ -20,7 +19,7 @@ interface LandingPageProps {
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth }) => {
-  const { currentUser } = useUIStore();
+  const { } = useUIStore();
 
   const features = [
     {

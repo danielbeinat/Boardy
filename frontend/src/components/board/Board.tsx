@@ -5,41 +5,29 @@ import {
   SortableContext,
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import type { Board as BoardType, List, Card } from "../../types";
+import type { Board as BoardType, Card } from "../../types";
 import { ListComponent } from "./List";
 import { SortableList } from "../features";
 import { Button, Input } from "../ui";
-import { cn } from "../../utils";
 
 interface BoardProps {
   board: BoardType;
-  onUpdate: (updates: Partial<BoardType>) => void;
   onListAdd: (title: string) => void;
   onListUpdate: (listId: string, title: string) => void;
   onListDelete: (listId: string) => void;
   onListCopy: (listId: string) => void;
   onCardAdd: (listId: string, title: string, description?: string) => void;
   onCardClick: (card: Card, listId: string) => void;
-  onCardDelete: (listId: string, cardId: string) => void;
-  onCardMove: (
-    fromListId: string,
-    toListId: string,
-    cardId: string,
-    newIndex: number,
-  ) => void;
 }
 
 export const Board: React.FC<BoardProps> = ({
   board,
-  onUpdate,
   onListAdd,
   onListUpdate,
   onListDelete,
   onListCopy,
   onCardAdd,
   onCardClick,
-  onCardDelete,
-  onCardMove,
 }) => {
   const [isAddingList, setIsAddingList] = useState(false);
   const [newListTitle, setNewListTitle] = useState("");
@@ -68,8 +56,6 @@ export const Board: React.FC<BoardProps> = ({
                 onCopy={onListCopy}
                 onCardAdd={onCardAdd}
                 onCardClick={(card) => onCardClick(card, list.id)}
-                onCardDelete={onCardDelete}
-                onCardMove={onCardMove}
               />
             </SortableList>
           ))}
