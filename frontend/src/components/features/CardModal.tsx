@@ -279,7 +279,7 @@ export const CardModal: React.FC<CardModalProps> = ({
         />
       </div>
 
-      <ConfirmModal
+      <LabelManager
         isOpen={isLabelManagerOpen}
         onClose={() => setIsLabelManagerOpen(false)}
         cardId={card.id}
