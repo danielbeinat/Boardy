@@ -98,7 +98,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth }) => {
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
               Gestiona tus proyectos, tareas y colabora con tu equipo en una
-              interfaz intuitiva y moderna inspirada en Trello.
+              interfaz intuitiva y moderna.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -176,8 +176,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth }) => {
               ¿Listo para empezar?
             </h2>
             <p className="text-blue-100 text-lg mb-8">
-              Únete a miles de usuarios que ya organizan su trabajo con nuestra
-              herramienta
+              La herramienta ideal para organizar tu trabajo de manera eficiente
+              y profesional.
             </p>
             <Button
               onClick={() => onOpenAuth("register")}
