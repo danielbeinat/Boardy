@@ -109,9 +109,7 @@ export const CardModal: React.FC<CardModalProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {/* Main Content */}
           <div className="md:col-span-3 space-y-6">
-            {/* Labels and Dates */}
             <div className="flex flex-wrap gap-4">
               {card.labels.length > 0 && (
                 <div>
@@ -204,7 +202,6 @@ export const CardModal: React.FC<CardModalProps> = ({
             </div>
           </div>
 
-          {/* Sidebar Actions */}
           <div className="space-y-6">
             <div>
               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
@@ -282,8 +279,7 @@ export const CardModal: React.FC<CardModalProps> = ({
         />
       </div>
 
-      {/* Sub-modals */}
-      <LabelManager
+      <ConfirmModal
         isOpen={isLabelManagerOpen}
         onClose={() => setIsLabelManagerOpen(false)}
         cardId={card.id}

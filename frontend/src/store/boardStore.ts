@@ -120,7 +120,6 @@ export const useBoardStore = create<BoardState>()(
           const [movedList] = newLists.splice(fromIndex, 1);
           newLists.splice(toIndex, 0, movedList);
 
-          // Update positions
           newLists.forEach((list, index) => {
             list.position = index;
           });
@@ -258,7 +257,6 @@ export const useBoardStore = create<BoardState>()(
           const [movedCard] = list.cards.splice(fromIndex, 1);
           list.cards.splice(toIndex, 0, movedCard);
 
-          // Update positions
           list.cards.forEach((card, index) => {
             card.position = index;
           });

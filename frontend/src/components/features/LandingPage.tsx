@@ -19,8 +19,6 @@ interface LandingPageProps {
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth }) => {
-  const { } = useUIStore();
-
   const features = [
     {
       icon: <LayoutGrid className="w-6 h-6" />,
@@ -87,7 +85,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth }) => {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <div className="px-4 sm:px-6 py-20">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -126,7 +123,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth }) => {
           </motion.div>
         </div>
       </div>
-
+{/* Features Grid */}
+      
       {/* Features Grid */}
       <div className="px-4 sm:px-6 py-20 bg-white/10 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
@@ -163,9 +161,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth }) => {
                 <p className="text-blue-100">{feature.description}</p>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </div>
+          </        </div>
+
 
       {/* CTA Section */}
       <div className="px-4 sm:px-6 py-20">

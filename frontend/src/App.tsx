@@ -67,7 +67,6 @@ export const BoardyApp: React.FC = () => {
   } | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
-  // Available labels from all cards in the board
   const availableLabels = React.useMemo(() => {
     const labelsMap = new Map<string, Label>();
     board.lists.forEach((list) => {
@@ -80,7 +79,6 @@ export const BoardyApp: React.FC = () => {
     return Array.from(labelsMap.values());
   }, [board]);
 
-  // Memoized filtered board
   const filteredBoard = React.useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
     const hasLabelFilter = selectedLabelIds.length > 0;
@@ -92,7 +90,6 @@ export const BoardyApp: React.FC = () => {
       lists: board.lists.map((list) => ({
         ...list,
         cards: list.cards.filter((card) => {
-          // Search query filter
           const matchesQuery =
             !query ||
             card.title.toLowerCase().includes(query) ||
@@ -101,7 +98,6 @@ export const BoardyApp: React.FC = () => {
               label.text.toLowerCase().includes(query),
             );
 
-          // Label filter
           const matchesLabels =
             !hasLabelFilter ||
             card.labels.some((label) => selectedLabelIds.includes(label.id));
@@ -112,7 +108,6 @@ export const BoardyApp: React.FC = () => {
     };
   }, [board, searchQuery, selectedLabelIds]);
 
-  // Load user boards
   const loadBoards = useCallback(async () => {
     try {
       const response = await boardService.getBoards();
@@ -129,7 +124,6 @@ export const BoardyApp: React.FC = () => {
     }
   }, [setBoard]);
 
-  // Initialize Auth
   useEffect(() => {
     const initializeAuth = async () => {
       try {
@@ -153,7 +147,6 @@ export const BoardyApp: React.FC = () => {
     initializeAuth();
   }, [setCurrentUser, loadBoards]);
 
-  // Fetch boards when user logs in manually
   useEffect(() => {
     if (currentUser && !isLoading) {
       loadBoards();
@@ -182,7 +175,7 @@ export const BoardyApp: React.FC = () => {
   };
 
   const handleAddList = async (title: string) => {
-    addList(title); // Optimistic update
+    addList(title);
     try {
       const response = await boardService.addList(board.id, title);
       if (response.success) {
@@ -203,7 +196,7 @@ export const BoardyApp: React.FC = () => {
     title: string,
     description?: string,
   ) => {
-    addCard(listId, title, description); // Optimistic update
+    addCard(listId, title, description);
     try {
       const response = await boardService.addCard(
         board.id,
@@ -239,7 +232,6 @@ export const BoardyApp: React.FC = () => {
   ) => {
     updateCard(cardId, listId, updates);
 
-    // Also update selectedCard state so the modal re-renders
     setSelectedCard((prev) =>
       prev
         ? {
@@ -282,10 +274,8 @@ export const BoardyApp: React.FC = () => {
     const newLabel = { ...label, id: uuidv4() };
     const updatedLabels = [...currentCard.labels, newLabel];
 
-    // Optimistic update in store
     addLabel(cardId, label);
 
-    // Also update selectedCard state so the modal re-renders
     setSelectedCard((prev) =>
       prev
         ? {
@@ -324,10 +314,8 @@ export const BoardyApp: React.FC = () => {
 
     const updatedLabels = currentCard.labels.filter((l) => l.id !== labelId);
 
-    // Optimistic update in store
     removeLabel(cardId, labelId);
 
-    // Also update selectedCard state so the modal re-renders
     setSelectedCard((prev) =>
       prev
         ? {
@@ -412,7 +400,6 @@ export const BoardyApp: React.FC = () => {
         onListReorder={reorderLists}
       >
         <div className="flex flex-col h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700 overflow-hidden relative">
-          {/* Mobile Drawer Overlay */}
           <AnimatePresence>
             {isMobileMenuOpen && (
               <>
@@ -446,7 +433,6 @@ export const BoardyApp: React.FC = () => {
                   </div>
 
                   <div className="p-4 flex flex-col gap-6 overflow-y-auto">
-                    {/* User Info */}
                     <div className="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/10">
                       <div
                         className="w-10 h-10 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-inner"
@@ -467,7 +453,6 @@ export const BoardyApp: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Search in Mobile */}
                     <div className="space-y-2">
                       <span className="text-xs font-semibold text-white/40 uppercase tracking-wider px-2">
                         Búsqueda
@@ -485,7 +470,6 @@ export const BoardyApp: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Navigation */}
                     <div className="space-y-1">
                       <span className="text-xs font-semibold text-white/40 uppercase tracking-wider px-2">
                         Menú
@@ -502,7 +486,6 @@ export const BoardyApp: React.FC = () => {
                       </button>
                     </div>
 
-                    {/* Actions */}
                     <div className="mt-auto pt-6 space-y-1">
                       <button
                         onClick={handleLogout}

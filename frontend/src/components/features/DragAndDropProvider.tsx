@@ -64,8 +64,6 @@ export const DragAndDropProvider: React.FC<DragAndDropProviderProps> = ({
     const overData = over.data.current;
 
     if (!activeData || !overData) return;
-
-    // We can add logic here if we want to preview moving cards between lists
   };
 
   const handleDragEnd = (event: DragEndEvent) => {

@@ -35,7 +35,6 @@ export const CardComponent: React.FC<CardComponentProps> = ({
       onMouseLeave={() => setShowActions(false)}
     >
       <div className="p-3">
-        {/* Labels */}
         {card.labels.length > 0 && (
           <div className="flex gap-1 mb-2">
             {card.labels.map((label) => (
@@ -63,7 +62,6 @@ export const CardComponent: React.FC<CardComponentProps> = ({
             )}
           </div>
 
-          {/* Actions */}
           <div
             className={cn(
               "flex items-center gap-1 transition-opacity",
@@ -89,7 +87,6 @@ export const CardComponent: React.FC<CardComponentProps> = ({
           </div>
         </div>
 
-        {/* Due Date */}
         {card.dueDate && (
           <div className="mt-2 text-xs text-gray-500">
             📅 {new Date(card.dueDate).toLocaleDateString()}

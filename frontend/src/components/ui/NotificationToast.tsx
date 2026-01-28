@@ -66,7 +66,6 @@ export const NotificationToast: React.FC<{ notification: Notification }> = ({
 export const NotificationCenter: React.FC = () => {
   const { notifications } = useUIStore();
 
-  // Solo mostramos las notificaciones no leídas o las más recientes
   const activeNotifications = notifications.slice(0, 3);
 
   return (

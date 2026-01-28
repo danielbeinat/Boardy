@@ -1,0 +1,45 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/boardy
+      - NODE_ENV=production
+      - JWT_SECRET=your_jwt_secret_here
+      - CLIENT_URL=http://localhost:3000
+    depends_on:
+      - mongodb
+    networks:
+      - boardy-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:5000/api
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - boardy-network
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - boardy-network
+
+networks:
+  boardy-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:

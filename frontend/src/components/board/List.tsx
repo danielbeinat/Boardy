@@ -59,7 +59,6 @@ export const ListComponent: React.FC<ListComponentProps> = ({
       className="flex-shrink-0 w-80"
     >
       <div className="bg-gray-100/95 backdrop-blur-sm rounded-xl shadow-lg">
-        {/* List Header */}
         <div className="p-3 border-b border-gray-200">
           <div className="flex items-center justify-between group">
             <div className="flex flex-col flex-1 min-w-0 mr-2">
@@ -146,7 +145,6 @@ export const ListComponent: React.FC<ListComponentProps> = ({
           </SortableContext>
         </div>
 
-        {/* Add Card Section */}
         <div className="p-2">
           <AnimatePresence>
             {isAddingCard ? (

@@ -62,7 +62,6 @@ export const Board: React.FC<BoardProps> = ({
         </AnimatePresence>
       </SortableContext>
 
-      {/* Add List Button */}
       <div className="flex-shrink-0 w-80">
         <AnimatePresence>
           {isAddingList ? (
