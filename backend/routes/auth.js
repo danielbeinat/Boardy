@@ -56,7 +56,7 @@ router.post('/register', [
       name,
       email,
       password,
-      avatarColor: `#${Math.floor(Math.random()*16777215).toString(16)}`
+      avatarColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`
     });
 
     await user.save();
@@ -159,7 +159,7 @@ router.post('/login', [
 router.get('/me', async (req, res) => {
   try {
     const token = req.header('Authorization')?.replace('Bearer ', '');
-    
+
     if (!token) {
       return res.status(401).json({
         success: false,
@@ -169,7 +169,7 @@ router.get('/me', async (req, res) => {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.userId);
-    
+
     if (!user) {
       return res.status(401).json({
         success: false,
